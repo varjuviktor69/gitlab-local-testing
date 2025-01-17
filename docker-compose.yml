@@ -1,0 +1,16 @@
+services:
+  gitlab:
+    image: gitlab/gitlab-ce:17.5.5-ce.0
+    container_name: gitlab-server-viktor
+    environment:
+      GITLAB_ROOT_EMAIL: "viktorcrow@viktor.com"
+      GITLAB_ROOT_PASSWORD: "Abcd@0123456789"
+      GITLAB_OMNIBUS_CONFIG: |
+        puma['worker_processes'] = 0 # Disable clusters
+    ports:
+      - '8000:80'
+    shm_size: '256m'
+    volumes:
+      - '/srv/gitlab/config:/etc/gitlab' # Run this on the host: sudo mkdir -p /srv/gitlab
+      - '/srv/gitlab/logs:/var/log/gitlab'
+      - '/srv/gitlab/data:/var/opt/gitlab'
