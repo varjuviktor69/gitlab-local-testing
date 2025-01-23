@@ -7,8 +7,9 @@ services:
       GITLAB_ROOT_PASSWORD: "Abcd@0123456789"
       GITLAB_OMNIBUS_CONFIG: |
         puma['worker_processes'] = 0
+        external_url 'http://localhost:8000'
     ports:
-      - '8000:80'
+      - '8000:8000'
     shm_size: '256m'
     volumes:
       - '/srv/gitlab/config:/etc/gitlab' # Run this on the host: sudo mkdir -p /srv/gitlab
